@@ -1,0 +1,77 @@
+[
+  {
+    "title": "Sebbeta Ayyo Account Success",
+    "lesson": "Women customers in rural Oromia showed 40% higher savings rate when offered Sebbeta Ayyo accounts with financial literacy training. Recommend promoting this product actively in rural branches.",
+    "author": "Branch Manager - Jimma Branch",
+    "date": "2025-02-10"
+  },
+  {
+    "title": "Youth Account Digital Adoption",
+    "lesson": "Youth account holders aged 18-25 prefer mobile banking over branch visits. 85% activated mobile banking within first month. Focus on digital onboarding for this segment.",
+    "author": "Digital Banking Team - Head Office",
+    "date": "2025-01-20"
+  },
+  {
+    "title": "Agricultural Loan Timing",
+    "lesson": "Farmers applying for loans 2-3 months before planting season have 30% lower default rates. Proactive outreach before Meher and Belg seasons recommended.",
+    "author": "Loan Officer - Nekemte Branch",
+    "date": "2024-12-15"
+  },
+
+  
+  
+  {
+    "title": "NBE Audit Preparation - 15 Years Experience",
+    "lesson": "After 15 years handling NBE audits, I learned: Always prepare transaction reports 2 weeks early, keep physical copies of high-value transactions (above 200k ETB) in separate folder, and maintain daily reconciliation sheets. Auditors always check last quarter's foreign currency approvals first. This preparation reduced our audit time from 5 days to 2 days.",
+    "author": "Alemayehu Tadesse - Senior Branch Manager (Retired) - Adama Branch",
+    "date": "2025-01-15"
+  },
+  {
+    "title": "Handling Angry Customers - What 20 Years Taught Me",
+    "lesson": "When customers are upset about transaction delays or errors: 1) Never argue or defend immediately, 2) Listen completely without interrupting, 3) Acknowledge their frustration first before explaining, 4) Offer tea/water while checking the issue, 5) Involve branch manager only after trying to resolve. In Oromia culture, showing respect and patience matters more than quick solutions. This approach reduced my customer complaints by 80%.",
+    "author": "Fatuma Ibrahim - Senior Customer Service Officer (25 years) - Jimma Branch",
+    "date": "2025-02-01"
+  },
+  {
+    "title": "Collateral Valuation Mistakes New Loan Officers Make",
+    "lesson": "Common mistake: Accepting land certificates without verifying actual ownership at Woreda office. I learned this the hard way when 3 loans defaulted because land was disputed. Always: 1) Visit the land physically, 2) Check Woreda land records, 3) Interview neighbors about disputes, 4) For rural areas, involve local elders. Takes extra 2 days but prevents 90% of collateral issues.",
+    "author": "Bekele Negash - Senior Loan Officer (18 years) - Nekemte Branch",
+    "date": "2024-12-20"
+  },
+  {
+    "title": "Mobile Banking OTP Issues - Quick Fix Seniors Know",
+    "lesson": "When customers can't receive OTP: Don't immediately blame telecom. 90% of time it's because: 1) Customer changed SIM without updating bank records, 2) Phone memory full blocking SMS, 3) Customer has DND (Do Not Disturb) activated. Ask these 3 questions first before creating IT ticket. Saves 30 minutes per case.",
+    "author": "Hirut Bekele - Senior Teller (12 years) - Addis Ababa Branch",
+    "date": "2025-01-28"
+  },
+  {
+    "title": "Foreign Currency Transaction Approval - Hidden Steps",
+    "lesson": "NBE approval for foreign currency takes 3-5 days, but seniors know: Submit before 10 AM to get same-day review. Include proforma invoice, TIN certificate, and import permit in ONE PDF (not separate files). Call NBE officer after submission to confirm receipt. These steps reduced our approval time from 7 days to 3 days average.",
+    "author": "Dawit Hailu - Senior International Banking Officer (16 years) - Head Office",
+    "date": "2024-11-30"
+  },
+  {
+    "title": "Cash Shortage Reconciliation - Teller's 20-Year Secret",
+    "lesson": "When cash doesn't balance at end of day: 1) Recount large denominations first (100 & 200 ETB notes), 2) Check if any transaction was entered twice in system, 3) Look for stuck notes in cash drawer corners, 4) Review last 10 transactions before shortage noticed. In 20 years, 95% of shortages were data entry errors or stuck notes, not theft. Stay calm and systematic.",
+    "author": "Mulugeta Assefa - Head Teller (20 years, retiring) - Bahir Dar Branch",
+    "date": "2025-01-10"
+  },
+  {
+    "title": "Agricultural Loan Default Prevention - Seasonal Wisdom",
+    "lesson": "Farmers default not because they don't want to pay, but timing is wrong. Visit them 2 weeks after harvest (Meher: November, Belg: April) when they have cash. Don't send collection letters - visit personally with respect. Offer restructuring before they ask. Farmers who felt respected paid 85% on time. Also: Know local crop prices - if teff price drops, extend deadline automatically.",
+    "author": "Gemechu Wakjira - Senior Agricultural Loan Officer (22 years) - Nekemte Branch",
+    "date": "2024-12-15"
+  },
+  {
+    "title": "New Employee Onboarding - What Managers Forget to Teach",
+    "lesson": "After training 50+ new employees: First week, pair them with senior staff, don't give system access yet. Let them observe. Week 2: Give limited access, let them make mistakes on small transactions. Most important: Teach them how to apologize to customers professionally in Afaan Oromo and Amharic. Technical skills are easy, customer interaction is hard. Also teach: How to handle power outages (manual receipt books location), where backup keys are kept, emergency contact numbers.",
+    "author": "Tigist Mekonnen - Branch Manager (14 years) - Adama Branch",
+    "date": "2025-02-05"
+  },
+  {
+    "title": "System Downtime Workarounds - IT Won't Tell You This",
+    "lesson": "When core banking system is down (happens 2-3 times per month): 1) Use manual receipt books (always keep 5 books in drawer), 2) Take customer phone number and promise callback, 3) For urgent withdrawals under 5000 ETB, use petty cash with manager approval and manual receipt, 4) Post all manual transactions within 2 hours when system returns. Never tell customer 'come back tomorrow' - they lose trust. This saved our branch reputation during 2-day system outage.",
+    "author": "Yohannes Tadesse - Senior Operations Officer (17 years) - Dire Dawa Branch",
+    "date": "2024-12-28"
+  }
+]

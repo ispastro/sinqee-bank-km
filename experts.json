@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Neway Megersa",
+    "role": "Bank President",
+    "expertise": "Strategic planning, bank operations, regulatory compliance",
+    "branch": "Head Office - Addis Ababa",
+    "contact": "president@siinqeebank.com"
+  },
+  {
+    "name": "Getachew Deressa",
+    "role": "VP - Microfinance and Banking Operations",
+    "expertise": "Microfinance services, branch operations, rural banking",
+    "branch": "Head Office - Addis Ababa",
+    "contact": "getachew.deressa@siinqeebank.com"
+  },
+  {
+    "name": "Million Zeleke",
+    "role": "VP - Banking Business and Credit",
+    "expertise": "Credit management, loan products, risk assessment",
+    "branch": "Head Office - Addis Ababa",
+    "contact": "million.zeleke@siinqeebank.com"
+  }
+]

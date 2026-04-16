@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Siinqee Bank — Knowledge Management  System</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; color: #2c3e50; }
+
+    header {
+      background: linear-gradient(135deg, #6B8E23 0%, #7A9B3C 100%);
+      color: white;
+      padding: 16px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    header img { height: 50px; border-radius: 8px; }
+    header .header-text { flex: 1; }
+    header h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 4px; }
+    header p { font-size: 0.9rem; opacity: 0.95; }
+
+    .tabs {
+      background: #4A6B2E;
+      display: flex;
+      padding: 0 40px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .tab {
+      padding: 14px 24px;
+      color: rgba(255,255,255,0.8);
+      cursor: pointer;
+      font-size: 0.95rem;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+    .tab.active { color: white; border-bottom-color: #F5C842; background: rgba(255,255,255,0.05); }
+    .tab:hover { color: white; background: rgba(255,255,255,0.08); }
+
+    .page { display: none; max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+    .page.active { display: block; }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+      border-top: 4px solid #7A9B3C;
+    }
+    .card h2 { 
+      font-size: 1.1rem; 
+      color: #4A6B2E; 
+      margin-bottom: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    textarea, input[type="text"] {
+      width: 100%; padding: 12px 14px;
+      border: 2px solid #e0e0e0; border-radius: 8px;
+      font-size: 0.95rem; margin-bottom: 12px; 
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+    textarea:focus, input[type="text"]:focus {
+      outline: none;
+      border-color: #7A9B3C;
+    }
+    
+    button {
+      background: linear-gradient(135deg, #6B8E23 0%, #7A9B3C 100%);
+      color: white; border: none;
+      padding: 12px 24px; border-radius: 8px;
+      cursor: pointer; font-size: 0.95rem; width: 100%;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    button:hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(107, 142, 35, 0.3);
+    }
+    button:disabled { 
+      background: #ccc; 
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .answer-box {
+      margin-top: 18px; 
+      background: linear-gradient(135deg, #f0f8f0 0%, #f5faf5 100%);
+      border-left: 4px solid #7A9B3C; 
+      padding: 16px;
+      border-radius: 8px; 
+      font-size: 0.95rem;
+      line-height: 1.7; 
+      display: none;
+      box-shadow: 0 2px 8px rgba(107, 142, 35, 0.1);
+    }
+
+    .status { 
+      margin-top: 12px; 
+      font-size: 0.9rem; 
+      color: #7A9B3C; 
+      display: none;
+      font-weight: 500;
+    }
+
+    .item {
+      background: #fafafa; 
+      border: 1px solid #e8e8e8;
+      border-radius: 8px; 
+      padding: 14px 16px; 
+      margin-bottom: 12px; 
+      font-size: 0.9rem;
+      transition: box-shadow 0.2s;
+    }
+    .item:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .item strong { 
+      color: #4A6B2E; 
+      display: block; 
+      margin-bottom: 6px; 
+      font-size: 1rem;
+    }
+    .item .meta { 
+      color: #888; 
+      font-size: 0.82rem; 
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-block; 
+      background: #e8f5e9; 
+      color: #4A6B2E;
+      border-radius: 5px; 
+      padding: 3px 10px; 
+      font-size: 0.8rem; 
+      margin-right: 6px;
+      font-weight: 500;
+    }
+
+    .del-btn {
+      background: #dc3545; 
+      color: white; 
+      border: none;
+      padding: 6px 12px; 
+      border-radius: 6px; 
+      cursor: pointer;
+      font-size: 0.8rem; 
+      margin-top: 10px; 
+      width: auto;
+      margin-right: 8px;
+    }
+    .del-btn:hover { background: #c82333; transform: none; }
+
+    .edit-btn {
+      background: #007bff; 
+      color: white; 
+      border: none;
+      padding: 6px 12px; 
+      border-radius: 6px; 
+      cursor: pointer;
+      font-size: 0.8rem; 
+      margin-top: 10px; 
+      width: auto;
+    }
+    .edit-btn:hover { background: #0056b3; transform: none; }
+
+    .modal {
+      display: none; 
+      position: fixed; 
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%; 
+      background: rgba(0,0,0,0.6);
+      z-index: 1000; 
+      align-items: center; 
+      justify-content: center;
+    }
+    .modal.show { display: flex; }
+    .modal-content {
+      background: white; 
+      border-radius: 12px; 
+      padding: 28px;
+      max-width: 450px; 
+      width: 90%; 
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .modal-content h3 { 
+      color: #4A6B2E; 
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
+    .modal-content p { 
+      margin-bottom: 22px; 
+      color: #555; 
+      line-height: 1.6;
+    }
+    .modal-btns { display: flex; gap: 12px; }
+    .modal-btns button { width: 50%; }
+    .btn-cancel { background: #6c757d !important; }
+    .btn-cancel:hover { background: #5a6268 !important; }
+
+    @media (max-width: 768px) { 
+      .grid2 { grid-template-columns: 1fr; }
+      header { padding: 16px 20px; }
+      .tabs { padding: 0 20px; }
+      .tab { padding: 12px 16px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="/image.png" alt="Siinqee Bank Logo" />
+  <div class="header-text">
+    <h1>AI Based Knowledge  Management System</h1>
+    <p>Empowering Branch Employees with Intelligent Knowledge Management</p>
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('ask')">💬 Ask AI</div>
+  <div class="tab" onclick="switchTab('knowledge')">📚 Knowledge Repository</div>
+  <div class="tab" onclick="switchTab('lessons')">📝 Lessons Learned</div>
+  <div class="tab" onclick="switchTab('experts')">👤 Expert Directory</div>
+  <div class="tab" onclick="switchTab('search')">🔍 Smart Search</div>
+</div>
+
+<!-- SEARCH TAB -->
+<div id="tab-search" class="page">
+  <div class="card">
+    <h2>🔍 Smart Search</h2>
+    <input type="text" id="search-input" placeholder="Search across all knowledge, lessons, and experts..." oninput="performSearch()" />
+    <div id="search-results" style="margin-top: 20px;"></div>
+  </div>
+</div>
+
+<!-- ASK TAB -->
+<div id="tab-ask" class="page active">
+  <div class="card">
+    <h2>💬 Ask the Knowledge Assistant</h2>
+    <textarea id="question" rows="3" placeholder="e.g. What is Sebbeta Ayyo account? Who handles NBE compliance?"></textarea>
+    <button id="ask-btn" onclick="askQuestion()">Ask Question</button>
+    <div id="answer-box" class="answer-box"></div>
+  </div>
+</div>
+
+<!-- KNOWLEDGE REPO TAB -->
+<div id="tab-knowledge" class="page">
+  <div class="grid2">
+    <div class="card">
+      <h2>➕ Add Knowledge</h2>
+      <input type="text" id="k-title" placeholder="Title (e.g. Foreign Currency Account)" />
+      <textarea id="k-content" rows="5" placeholder="Describe the procedure, policy, or banking service..."></textarea>
+      <button onclick="addKnowledge()">Save Knowledge</button>
+      <div id="k-status" class="status"></div>
+    </div>
+    <div class="card">
+      <h2>📚 Knowledge Entries</h2>
+      <div id="k-list">Loading...</div>
+    </div>
+  </div>
+</div>
+
+<!-- LESSONS LEARNED TAB -->
+<div id="tab-lessons" class="page">
+  <div class="grid2">
+    <div class="card">
+      <h2>➕ Log a Lesson</h2>
+      <input type="text" id="l-title" placeholder="Title (e.g. Mobile Banking OTP Issue)" />
+      <textarea id="l-lesson" rows="5" placeholder="What happened and what did you learn from it?"></textarea>
+      <input type="text" id="l-author" placeholder="Your name & branch (e.g. Abebe — Adama Branch)" />
+      <button onclick="addLesson()">Save Lesson</button>
+      <div id="l-status" class="status"></div>
+    </div>
+    <div class="card">
+      <h2>📝 Lessons Learned</h2>
+      <div id="l-list">Loading...</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERTS TAB -->
+<div id="tab-experts" class="page">
+  <div class="grid2">
+    <div class="card">
+      <h2>➕ Add Expert</h2>
+      <input type="text" id="e-name" placeholder="Full Name" />
+      <input type="text" id="e-role" placeholder="Role (e.g. Senior Loan Officer)" />
+      <input type="text" id="e-expertise" placeholder="Expertise areas" />
+      <input type="text" id="e-branch" placeholder="Branch" />
+      <input type="text" id="e-contact" placeholder="Email" />
+      <button onclick="addExpert()">Save Expert</button>
+      <div id="e-status" class="status"></div>
+    </div>
+    <div class="card">
+      <h2>👤 Expert Directory</h2>
+      <div id="e-list">Loading...</div>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH DETAIL MODAL -->
+<div id="search-detail-modal" class="modal">
+  <div class="modal-content" style="max-width: 650px;">
+    <h3 id="detail-title"></h3>
+    <div id="detail-content" style="margin: 20px 0; line-height: 1.7;"></div>
+    <div class="modal-btns">
+      <button onclick="closeDetailModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRMATION MODAL -->
+<div id="delete-modal" class="modal">
+  <div class="modal-content">
+    <h3>⚠️ Confirm Delete</h3>
+    <p>Are you sure you want to delete this entry? This action cannot be undone.</p>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div id="edit-modal" class="modal">
+  <div class="modal-content" style="max-width: 550px;">
+    <h3>✏️ Edit Entry</h3>
+    <div id="edit-form"></div>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
+      <button onclick="confirmEdit()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let deleteTarget = null;
+  let editTarget = null;
+
+  function switchTab(name) {
+    document.querySelectorAll('.tab').forEach((t, i) => t.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const tabs = ['ask', 'knowledge', 'lessons', 'experts', 'search'];
+    document.querySelectorAll('.tab')[tabs.indexOf(name)].classList.add('active');
+    document.getElementById('tab-' + name).classList.add('active');
+    if (name === 'knowledge') loadKnowledge();
+    if (name === 'lessons') loadLessons();
+    if (name === 'experts') loadExperts();
+  }
+
+  async function performSearch() {
+    const query = document.getElementById('search-input').value.trim().toLowerCase();
+    const resultsDiv = document.getElementById('search-results');
+    
+    if (!query) {
+      resultsDiv.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">Start typing to search...</p>';
+      return;
+    }
+
+    const [knowledge, lessons, experts] = await Promise.all([
+      fetch('/knowledge').then(r => r.json()),
+      fetch('/lessons').then(r => r.json()),
+      fetch('/experts').then(r => r.json())
+    ]);
+
+    let results = [];
+
+    knowledge.forEach((k, idx) => {
+      if (k.title.toLowerCase().includes(query) || k.content.toLowerCase().includes(query)) {
+        results.push({ type: '📚 Knowledge', title: k.title, content: k.content.substring(0, 150) + '...', match: 'knowledge', data: k, index: idx });
+      }
+    });
+
+    lessons.forEach((l, idx) => {
+      if (l.title.toLowerCase().includes(query) || l.lesson.toLowerCase().includes(query) || l.author.toLowerCase().includes(query)) {
+        results.push({ type: '📝 Lesson', title: l.title, content: l.lesson.substring(0, 150) + '...', meta: `By ${l.author} · ${l.date}`, match: 'lessons', data: l, index: idx });
+      }
+    });
+
+    experts.forEach((e, idx) => {
+      if (e.name.toLowerCase().includes(query) || e.role.toLowerCase().includes(query) || e.expertise.toLowerCase().includes(query) || e.branch.toLowerCase().includes(query)) {
+        results.push({ type: '👤 Expert', title: e.name, content: `${e.role} · ${e.branch}`, meta: `${e.expertise} · ${e.contact}`, match: 'experts', data: e, index: idx });
+      }
+    });
+
+    if (results.length === 0) {
+      resultsDiv.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">No results found for "' + query + '"</p>';
+    } else {
+      resultsDiv.innerHTML = `<p style="color: #4A6B2E; font-weight: 600; margin-bottom: 16px;">${results.length} result(s) found</p>` + results.map((r, i) => `
+        <div class="item" style="cursor: pointer;" onclick="showSearchDetail(${i})">
+          <span class="badge">${r.type}</span>
+          <strong>${r.title}</strong>
+          ${r.meta ? `<div class="meta">${r.meta}</div>` : ''}
+          <div style="margin-top: 6px;">${r.content}</div>
+        </div>
+      `).join('');
+      window.searchResults = results;
+    }
+  }
+
+  function showSearchDetail(index) {
+    const result = window.searchResults[index];
+    const modal = document.getElementById('search-detail-modal');
+    const titleEl = document.getElementById('detail-title');
+    const contentEl = document.getElementById('detail-content');
+
+    titleEl.innerHTML = `<span class="badge">${result.type}</span> ${result.title}`;
+
+    if (result.match === 'knowledge') {
+      contentEl.innerHTML = `<p style="white-space: pre-wrap;">${result.data.content}</p>`;
+    } else if (result.match === 'lessons') {
+      contentEl.innerHTML = `
+        <div class="meta" style="margin-bottom: 12px;">By ${result.data.author} · ${result.data.date}</div>
+        <p style="white-space: pre-wrap;">${result.data.lesson}</p>
+      `;
+    } else if (result.match === 'experts') {
+      contentEl.innerHTML = `
+        <p><strong>Role:</strong> ${result.data.role}</p>
+        <p><strong>Branch:</strong> ${result.data.branch}</p>
+        <p><strong>Expertise:</strong> ${result.data.expertise}</p>
+        <p><strong>Contact:</strong> ${result.data.contact}</p>
+      `;
+    }
+
+    modal.classList.add('show');
+  }
+
+  function closeDetailModal() {
+    document.getElementById('search-detail-modal').classList.remove('show');
+  }
+
+  async function askQuestion() {
+    const question = document.getElementById("question").value.trim();
+    if (!question) return;
+    const btn = document.getElementById("ask-btn");
+    const box = document.getElementById("answer-box");
+    btn.disabled = true; btn.textContent = "Thinking...";
+    box.style.display = "block"; box.textContent = "...";
+    try {
+      const res = await fetch("/ask", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question })
+      });
+      const data = await res.json();
+      box.textContent = data.answer || data.detail;
+    } catch { box.textContent = "Error connecting to server."; }
+    btn.disabled = false; btn.textContent = "Ask Question";
+  }
+
+  async function addKnowledge() {
+    const title = document.getElementById("k-title").value.trim();
+    const content = document.getElementById("k-content").value.trim();
+    if (!title || !content) return alert("Fill both fields.");
+    const res = await fetch("/knowledge", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title, content }) });
+    const data = await res.json();
+    showStatus("k-status", data.message);
+    document.getElementById("k-title").value = "";
+    document.getElementById("k-content").value = "";
+    loadKnowledge();
+  }
+
+  async function addLesson() {
+    const title = document.getElementById("l-title").value.trim();
+    const lesson = document.getElementById("l-lesson").value.trim();
+    const author = document.getElementById("l-author").value.trim();
+    if (!title || !lesson || !author) return alert("Fill all fields.");
+    const res = await fetch("/lessons", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title, lesson, author }) });
+    const data = await res.json();
+    showStatus("l-status", data.message);
+    document.getElementById("l-title").value = "";
+    document.getElementById("l-lesson").value = "";
+    document.getElementById("l-author").value = "";
+    loadLessons();
+  }
+
+  async function addExpert() {
+    const name = document.getElementById("e-name").value.trim();
+    const role = document.getElementById("e-role").value.trim();
+    const expertise = document.getElementById("e-expertise").value.trim();
+    const branch = document.getElementById("e-branch").value.trim();
+    const contact = document.getElementById("e-contact").value.trim();
+    if (!name || !role || !expertise || !branch || !contact) return alert("Fill all fields.");
+    const res = await fetch("/experts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, role, expertise, branch, contact }) });
+    const data = await res.json();
+    showStatus("e-status", data.message);
+    ["e-name","e-role","e-expertise","e-branch","e-contact"].forEach(id => document.getElementById(id).value = "");
+    loadExperts();
+  }
+
+  async function loadKnowledge() {
+    const data = await (await fetch("/knowledge")).json();
+    document.getElementById("k-list").innerHTML = data.map((k, i) => `
+      <div class="item">
+        <strong>${k.title}</strong>
+        ${k.content.substring(0, 140)}...
+        <div>
+          <button class="edit-btn" onclick="editItem('knowledge', ${i})">✏️ Edit</button>
+          <button class="del-btn" onclick="deleteItem('knowledge', ${i})">🗑️ Delete</button>
+        </div>
+      </div>`).join("") || "No entries yet.";
+  }
+
+  async function loadLessons() {
+    const data = await (await fetch("/lessons")).json();
+    document.getElementById("l-list").innerHTML = data.map((l, i) => `
+      <div class="item">
+        <strong>${l.title}</strong>
+        <div class="meta">By ${l.author} · ${l.date}</div>
+        ${l.lesson.substring(0, 140)}...
+        <div>
+          <button class="edit-btn" onclick="editItem('lessons', ${i})">✏️ Edit</button>
+          <button class="del-btn" onclick="deleteItem('lessons', ${i})">🗑️ Delete</button>
+        </div>
+      </div>`).join("") || "No lessons yet.";
+  }
+
+  async function loadExperts() {
+    const data = await (await fetch("/experts")).json();
+    document.getElementById("e-list").innerHTML = data.map((e, i) => `
+      <div class="item">
+        <strong>${e.name}</strong>
+        <div class="meta">${e.role} · ${e.branch}</div>
+        <span class="badge">${e.expertise}</span><br/>
+        <small>📧 ${e.contact}</small>
+        <div>
+          <button class="edit-btn" onclick="editItem('experts', ${i})">✏️ Edit</button>
+          <button class="del-btn" onclick="deleteItem('experts', ${i})">🗑️ Delete</button>
+        </div>
+      </div>`).join("") || "No experts yet.";
+  }
+
+  async function deleteItem(type, index) {
+    deleteTarget = { type, index };
+    document.getElementById('delete-modal').classList.add('show');
+  }
+
+  function closeModal() {
+    document.getElementById('delete-modal').classList.remove('show');
+    deleteTarget = null;
+  }
+
+  async function confirmDelete() {
+    if (!deleteTarget) return;
+    await fetch(`/${deleteTarget.type}/${deleteTarget.index}`, { method: "DELETE" });
+    if (deleteTarget.type === 'knowledge') loadKnowledge();
+    if (deleteTarget.type === 'lessons') loadLessons();
+    if (deleteTarget.type === 'experts') loadExperts();
+    closeModal();
+  }
+
+  async function editItem(type, index) {
+    const res = await fetch(`/${type}`);
+    const data = await res.json();
+    const item = data[index];
+    editTarget = { type, index };
+
+    let formHTML = '';
+    if (type === 'knowledge') {
+      formHTML = `
+        <input type="text" id="edit-title" value="${item.title}" placeholder="Title" />
+        <textarea id="edit-content" rows="5" placeholder="Content">${item.content}</textarea>
+      `;
+    } else if (type === 'lessons') {
+      formHTML = `
+        <input type="text" id="edit-title" value="${item.title}" placeholder="Title" />
+        <textarea id="edit-lesson" rows="5" placeholder="Lesson">${item.lesson}</textarea>
+        <input type="text" id="edit-author" value="${item.author}" placeholder="Author" />
+      `;
+    } else if (type === 'experts') {
+      formHTML = `
+        <input type="text" id="edit-name" value="${item.name}" placeholder="Name" />
+        <input type="text" id="edit-role" value="${item.role}" placeholder="Role" />
+        <input type="text" id="edit-expertise" value="${item.expertise}" placeholder="Expertise" />
+        <input type="text" id="edit-branch" value="${item.branch}" placeholder="Branch" />
+        <input type="text" id="edit-contact" value="${item.contact}" placeholder="Contact" />
+      `;
+    }
+
+    document.getElementById('edit-form').innerHTML = formHTML;
+    document.getElementById('edit-modal').classList.add('show');
+  }
+
+  function closeEditModal() {
+    document.getElementById('edit-modal').classList.remove('show');
+    editTarget = null;
+  }
+
+  async function confirmEdit() {
+    if (!editTarget) return;
+    const { type, index } = editTarget;
+    let body = {};
+
+    if (type === 'knowledge') {
+      body = {
+        title: document.getElementById('edit-title').value,
+        content: document.getElementById('edit-content').value
+      };
+    } else if (type === 'lessons') {
+      body = {
+        title: document.getElementById('edit-title').value,
+        lesson: document.getElementById('edit-lesson').value,
+        author: document.getElementById('edit-author').value
+      };
+    } else if (type === 'experts') {
+      body = {
+        name: document.getElementById('edit-name').value,
+        role: document.getElementById('edit-role').value,
+        expertise: document.getElementById('edit-expertise').value,
+        branch: document.getElementById('edit-branch').value,
+        contact: document.getElementById('edit-contact').value
+      };
+    }
+
+    await fetch(`/${type}/${index}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+
+    if (type === 'knowledge') loadKnowledge();
+    if (type === 'lessons') loadLessons();
+    if (type === 'experts') loadExperts();
+    closeEditModal();
+  }
+
+  function showStatus(id, msg) {
+    const el = document.getElementById(id);
+    el.textContent = "✅ " + msg;
+    el.style.display = "block";
+    setTimeout(() => el.style.display = "none", 3000);
+  }
+
+  document.getElementById("question").addEventListener("keydown", e => {
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); askQuestion(); }
+  });
+</script>
+
+</body>
+</html>
