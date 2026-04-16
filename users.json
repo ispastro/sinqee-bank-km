@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Admin User",
+    "email": "admin@bank.com",
+    "password": "admin123",
+    "role": "admin"
+  },
+  {
+    "name": "Manager User",
+    "email": "manager@bank.com",
+    "password": "manager123",
+    "role": "manager"
+  },
+  {
+    "name": "he",
+    "email": "gg",
+    "password": "sss",
+    "role": "employee"
+  },
+  {
+    "name": "Helen",
+    "email": "ggg@gmail.com",
+    "password": "1234",
+    "role": "employee"
+  },
+  {
+    "name": "h",
+    "email": "h@g.com",
+    "password": "1111",
+    "role": "employee"
+  },
+  {
+    "name": "admin",
+    "email": "a@g.com",
+    "password": "2222",
+    "role": "admin"
+  }
+]
