@@ -6,44 +6,104 @@
   <title>Siinqee Bank — Knowledge Management  System</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; color: #2c3e50; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; color: #2c3e50; }
 
-    header {
-      background: linear-gradient(135deg, #6B8E23 0%, #7A9B3C 100%);
-      color: white;
-      padding: 16px 40px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    header img { height: 50px; border-radius: 8px; }
-    header .header-text { flex: 1; }
-    header h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 4px; }
-    header p { font-size: 0.9rem; opacity: 0.95; }
+header {
+  background: linear-gradient(135deg, #6B8E23 0%, #7A9B3C 100%);
+  color: white;
+  padding: 16px 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center; 
+  gap: 16px;
+  flex-wrap: wrap; 
+}
 
-    .tabs {
-      background: #4A6B2E;
-      display: flex;
-      padding: 0 40px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .tab {
-      padding: 14px 24px;
-      color: rgba(255,255,255,0.8);
-      cursor: pointer;
-      font-size: 0.95rem;
-      border-bottom: 3px solid transparent;
-      transition: all 0.3s;
-      font-weight: 500;
-    }
-    .tab.active { color: white; border-bottom-color: #F5C842; background: rgba(255,255,255,0.05); }
-    .tab:hover { color: white; background: rgba(255,255,255,0.08); }
+header img { height: 50px; border-radius: 8px; }
 
-    .page { display: none; max-width: 1200px; margin: 30px auto; padding: 0 20px; }
-    .page.active { display: block; }
+header .header-text { 
+  flex: 1; 
+  min-width: 300px; 
+}
 
-    .card {
+header h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 4px; }
+header p { font-size: 0.9rem; opacity: 0.95; }
+
+header button {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+  width: fit-content; 
+  margin-top: 10px;
+
+   
+}
+
+header button:hover {
+  background: #c0392b;
+}
+
+.tabs {
+  background: #4A6B2E;
+  display: flex;
+  padding: 0 40px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  align-items: center;
+  justify-content: flex-start; /* Keeps tabs starting from the left */
+}
+
+/* 1. Make the tabs wider by increasing horizontal padding */
+.tab {
+  padding: 14px 40px; /* Increased from 24px to 40px for a wider feel */
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  font-size: 0.95rem;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+  font-weight: 500;
+  white-space: nowrap; 
+}
+
+/* Changed the selector name to match your HTML and set width to auto */
+.lang-btn {
+  margin-left: auto; 
+  width: auto; /* Changed from 40px to auto so it fits the text */
+  height: 28px;               
+  padding: 0 15px; /* Added side padding for a nice pill look */            
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 14px;       
+  font-size: 0.75rem;        
+  font-weight: 500;
+  display: flex;
+  align-items: center;        
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: none;          
+}
+
+.lang-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: none;       
+}
+.tab.active { color: white; border-bottom-color: #F5C842; background: rgba(255,255,255,0.05); }
+.tab:hover { color: white; background: rgba(255,255,255,0.08); }
+
+.page {
+  display: none;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 20px 40px;
+}
+.page.active { display: block; }
+.card {
       background: white;
       border-radius: 12px;
       padding: 28px;
@@ -51,7 +111,7 @@
       margin-bottom: 24px;
       border-top: 4px solid #7A9B3C;
     }
-    .card h2 { 
+.card h2 { 
       font-size: 1.1rem; 
       color: #4A6B2E; 
       margin-bottom: 18px;
@@ -60,40 +120,65 @@
       align-items: center;
       gap: 8px;
     }
+#tab-knowledge {
+     max-width: 1900px;
+}
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
-    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+textarea, 
+input[type="text"], 
+input[type="email"], 
+input[type="file"] {
+  width: 100%; 
+  padding: 12px 14px;
+  border: 2px solid #e0e0e0; 
+  border-radius: 8px;
+  font-size: 0.95rem; 
+  margin-bottom: 12px; 
+  font-family: inherit;
+  transition: border-color 0.3s;
+  display: block;      
+  box-sizing: border-box; 
+}
 
-    textarea, input[type="text"] {
-      width: 100%; padding: 12px 14px;
-      border: 2px solid #e0e0e0; border-radius: 8px;
-      font-size: 0.95rem; margin-bottom: 12px; 
-      font-family: inherit;
-      transition: border-color 0.3s;
-    }
-    textarea:focus, input[type="text"]:focus {
-      outline: none;
-      border-color: #7A9B3C;
-    }
+/* Ensure the green border appears when clicking the email box */
+input[type="email"]:focus {
+  outline: none;
+  border-color: #7A9B3C;
+}
+
+/* Slight tweak for the file button to look integrated */
+input[type="file"] {
+  padding: 8px 10px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* Update the focus state too */
+textarea:focus, input[type="text"]:focus, input[type="email"]:focus {
+  outline: none;
+  border-color: #7A9B3C;
+}
     
-    button {
+button {
       background: linear-gradient(135deg, #6B8E23 0%, #7A9B3C 100%);
       color: white; border: none;
       padding: 12px 24px; border-radius: 8px;
       cursor: pointer; font-size: 0.95rem; width: 100%;
       font-weight: 600;
       transition: transform 0.2s, box-shadow 0.2s;
-    }
-    button:hover { 
+}
+button:hover { 
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(107, 142, 35, 0.3);
-    }
-    button:disabled { 
+}
+button:disabled { 
       background: #ccc; 
       cursor: not-allowed;
       transform: none;
-    }
+ }
 
-    .answer-box {
+.answer-box {
       margin-top: 18px; 
       background: linear-gradient(135deg, #f0f8f0 0%, #f5faf5 100%);
       border-left: 4px solid #7A9B3C; 
@@ -103,17 +188,17 @@
       line-height: 1.7; 
       display: none;
       box-shadow: 0 2px 8px rgba(107, 142, 35, 0.1);
-    }
+}
 
-    .status { 
+.status { 
       margin-top: 12px; 
       font-size: 0.9rem; 
       color: #7A9B3C; 
       display: none;
       font-weight: 500;
-    }
+}
 
-    .item {
+.item {
       background: #fafafa; 
       border: 1px solid #e8e8e8;
       border-radius: 8px; 
@@ -121,23 +206,23 @@
       margin-bottom: 12px; 
       font-size: 0.9rem;
       transition: box-shadow 0.2s;
-    }
-    .item:hover {
+}
+.item:hover {
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    .item strong { 
+}
+.item strong { 
       color: #4A6B2E; 
       display: block; 
       margin-bottom: 6px; 
       font-size: 1rem;
-    }
-    .item .meta { 
+}
+.item .meta { 
       color: #888; 
       font-size: 0.82rem; 
       margin-bottom: 8px;
     }
 
-    .badge {
+.badge {
       display: inline-block; 
       background: #e8f5e9; 
       color: #4A6B2E;
@@ -148,7 +233,7 @@
       font-weight: 500;
     }
 
-    .del-btn {
+.del-btn {
       background: #dc3545; 
       color: white; 
       border: none;
@@ -160,9 +245,9 @@
       width: auto;
       margin-right: 8px;
     }
-    .del-btn:hover { background: #c82333; transform: none; }
+.del-btn:hover { background: #c82333; transform: none; }
 
-    .edit-btn {
+.edit-btn {
       background: #007bff; 
       color: white; 
       border: none;
@@ -173,7 +258,7 @@
       margin-top: 10px; 
       width: auto;
     }
-    .edit-btn:hover { background: #0056b3; transform: none; }
+.edit-btn:hover { background: #0056b3; transform: none; }
 
     .modal {
       display: none; 
@@ -187,8 +272,8 @@
       align-items: center; 
       justify-content: center;
     }
-    .modal.show { display: flex; }
-    .modal-content {
+.modal.show { display: flex; }
+.modal-content {
       background: white; 
       border-radius: 12px; 
       padding: 28px;
@@ -196,45 +281,177 @@
       width: 90%; 
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
-    .modal-content h3 { 
+.modal-content h3 { 
       color: #4A6B2E; 
       margin-bottom: 14px;
       font-size: 1.2rem;
     }
-    .modal-content p { 
+.modal-content p { 
       margin-bottom: 22px; 
       color: #555; 
       line-height: 1.6;
-    }
-    .modal-btns { display: flex; gap: 12px; }
-    .modal-btns button { width: 50%; }
-    .btn-cancel { background: #6c757d !important; }
-    .btn-cancel:hover { background: #5a6268 !important; }
+ }
+.modal-btns { display: flex; gap: 12px; }
+.modal-btns button { width: 50%; }
+.btn-cancel { background: #6c757d !important; }
+.btn-cancel:hover { background: #5a6268 !important; }
 
-    @media (max-width: 768px) { 
+.role-bar {
+  padding: 10px 40px;
+  background: #f1f1f1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#role-display {
+  color: #4A6B2E;
+  font-weight: 600;
+}
+.knowledge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+/* Ensure all modal elements look the same */
+.modal-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  box-sizing: border-box; /
+}
+
+/* Styling for the labels */
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+
+#auth-overlay .card {
+  padding: 40px !important;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#auth-overlay div[style*="text-align:center"] {
+  margin-bottom: 35px !important; 
+}
+
+
+#auth-overlay input, 
+#auth-overlay select {
+  width: 100% !important;
+  margin-bottom: 18px !important; 
+  padding: 14px 16px !important;  
+  box-sizing: border-box;
+}
+
+
+#auth-overlay button {
+  margin-top: 10px;
+  padding: 14px !important;
+}
+
+
+.auth-switch-text {
+  margin-top: 25px !important; 
+  font-size: 0.9rem;
+}
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) { 
       .grid2 { grid-template-columns: 1fr; }
       header { padding: 16px 20px; }
       .tabs { padding: 0 20px; }
       .tab { padding: 12px 16px; font-size: 0.85rem; }
+       .knowledge-grid {
+    grid-template-columns: 1fr;
+  }
     }
   </style>
 </head>
 <body>
+<body>
+  
+<div id="auth-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#f8f9fa; z-index:10000; display:flex; align-items:center; justify-content:center;">
+  <div class="card" style="max-width:400px; width:90%; border-top: 8px solid #6B8E23; position: relative; padding-top: 50px;">
+    
+    <div style="position: absolute; top: 15px; right: 15px;">
+        <button class="lang-tab-btn" onclick="toggleLanguage()" style="width: auto !important; padding: 4px 10px; font-size: 0.75rem; border: 1px solid #7A9B3C; color: #4A6B2E; background: #fff; border-radius: 15px; height: auto;">
+            <span id="lang-text-auth">🇪🇹 አማርኛ</span>
+        </button>
+    </div>
 
+    <div style="text-align:center; margin-bottom:20px;">
+        <img src="/image.png" style="height:60px; margin-bottom:10px;">
+        <h3 id="auth-title">Welcome Back</h3>
+    </div>
+
+    <div id="login-form">
+        <input type="text" id="login-email" placeholder="Email Address" />
+        <input type="password" id="login-password" placeholder="Password" />
+        <button onclick="handleLogin()">Login</button>
+        <p style="text-align:center; font-size:0.85rem; margin-top:15px;">
+            New to the portal? <a href="javascript:void(0)" onclick="toggleAuth(true)" style="color:#6B8E23; font-weight:600;">Sign Up</a>
+        </p>
+    </div>
+
+    <div id="signup-form" style="display:none;">
+        <input type="text" id="reg-name" placeholder="Full Name" />
+        <input type="text" id="reg-email" placeholder="Email Address" />
+        <input type="password" id="reg-password" placeholder="Password" />
+        <label style="font-size:0.8rem; font-weight:600; color:#4A6B2E;">Your Role:</label>
+        <select id="reg-role" style="width:100%; padding:10px; margin-bottom:15px; border-radius:8px; border:2px solid #e0e0e0;">
+          <option value="employee">Employee</option>
+          <option value="manager">Manager</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button onclick="handleSignup()">Create Account</button>
+        <p style="text-align:center; font-size:0.85rem; margin-top:15px;">
+            Already have an account? <a href="javascript:void(0)" onclick="toggleAuth(false)" style="color:#6B8E23; font-weight:600;">Login</a>
+        </p>
+    </div>
+  </div>
+</div>
+<div id="app-content" style="display:none;">
 <header>
   <img src="/image.png" alt="Siinqee Bank Logo" />
   <div class="header-text">
-    <h1>AI Based Knowledge  Management System</h1>
+    <h1 id="main-app-title">AI Based Knowledge  Management System</h1>
     <p>Empowering Branch Employees with Intelligent Knowledge Management</p>
   </div>
+  <button id="logout-btn" onclick="logout()" style="background:#e74c3c; color:white; border:none; padding:8px 15px; cursor:pointer; border-radius:5px;">
+  Logout
+</button>
 </header>
 
-<div class="tabs">
-  <div class="tab active" onclick="switchTab('ask')">💬 Ask AI</div>
-  <div class="tab" onclick="switchTab('knowledge')">📚 Knowledge Repository</div>
-  <div class="tab" onclick="switchTab('lessons')">📝 Lessons Learned</div>
-  <div class="tab" onclick="switchTab('experts')">👤 Expert Directory</div>
-  <div class="tab" onclick="switchTab('search')">🔍 Smart Search</div>
+
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('ask')" data-key="nav_ask">💬 Ask AI</div>
+    <div class="tab" onclick="switchTab('knowledge')" data-key="nav_knowledge">📚 Knowledge</div>
+    <div class="tab" onclick="switchTab('lessons')" data-key="nav_lessons">📝 Lessons</div>
+    <div class="tab" onclick="switchTab('experts')" data-key="nav_experts">👤 Experts</div>
+    <div class="tab" onclick="switchTab('ideas')" data-key="nav_ideas">💡 Ideas</div>
+    <button class="lang-btn" onclick="toggleLanguage()">
+      <span id="lang-text">🇪🇹 አማርኛ</span>
+    </button>
+  
 </div>
 
 <!-- SEARCH TAB -->
@@ -263,12 +480,14 @@
       <h2>➕ Add Knowledge</h2>
       <input type="text" id="k-title" placeholder="Title (e.g. Foreign Currency Account)" />
       <textarea id="k-content" rows="5" placeholder="Describe the procedure, policy, or banking service..."></textarea>
+      <input type="email" id="k-email" placeholder="Your Email" />
+  <input type="file" id="k-file" accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg" />
       <button onclick="addKnowledge()">Save Knowledge</button>
       <div id="k-status" class="status"></div>
     </div>
     <div class="card">
       <h2>📚 Knowledge Entries</h2>
-      <div id="k-list">Loading...</div>
+      <div id="k-list" class="knowledge-grid">Loading...</div>
     </div>
   </div>
 </div>
@@ -280,8 +499,12 @@
       <h2>➕ Log a Lesson</h2>
       <input type="text" id="l-title" placeholder="Title (e.g. Mobile Banking OTP Issue)" />
       <textarea id="l-lesson" rows="5" placeholder="What happened and what did you learn from it?"></textarea>
-      <input type="text" id="l-author" placeholder="Your name & branch (e.g. Abebe — Adama Branch)" />
-      <button onclick="addLesson()">Save Lesson</button>
+      <input type="text" id="l-author" placeholder="Your name & branch (e.g. Abebe — Adama Branch)" />      <input type="text" id="l-department" placeholder="Department" />
+      <input type="text" id="l-projectOrTask" placeholder="Project or Task" />
+      <textarea id="l-problemFaced" rows="2" placeholder="Problem Faced"></textarea>
+      <textarea id="l-solution" rows="2" placeholder="Solution"></textarea>
+      <textarea id="l-keyTakeaways" rows="2" placeholder="Key Takeaways"></textarea>
+       <button onclick="addLesson()">Save Lesson</button>
       <div id="l-status" class="status"></div>
     </div>
     <div class="card">
@@ -295,18 +518,62 @@
 <div id="tab-experts" class="page">
   <div class="grid2">
     <div class="card">
-      <h2>➕ Add Expert</h2>
-      <input type="text" id="e-name" placeholder="Full Name" />
-      <input type="text" id="e-role" placeholder="Role (e.g. Senior Loan Officer)" />
-      <input type="text" id="e-expertise" placeholder="Expertise areas" />
-      <input type="text" id="e-branch" placeholder="Branch" />
-      <input type="text" id="e-contact" placeholder="Email" />
-      <button onclick="addExpert()">Save Expert</button>
-      <div id="e-status" class="status"></div>
+      <h2>👤 Register as Expert</h2>
+      <div id="e-status" class="status-box"></div>
+      
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="e-name" class="modal-input" placeholder="e.g., Abebe Kebede" />
+      </div>
+
+      <div class="form-group">
+        <label>Job Role</label>
+        <input type="text" id="e-role" class="modal-input" placeholder="e.g., Senior Loan Officer" />
+      </div>
+
+      <div class="form-group">
+        <label>Branch / Department</label>
+        <input type="text" id="e-branch" class="modal-input" placeholder="e.g., Kazanchis Branch" />
+      </div>
+
+      <div class="form-group">
+        <label>Area of Expertise</label>
+        <input type="text" id="e-expertise" class="modal-input" placeholder="e.g., Foreign Exchange, Mortgages" />
+      </div>
+
+      <div class="form-group">
+        <label>Contact Info</label>
+        <input type="text" id="e-contact" class="modal-input" placeholder="Email or Phone Number" />
+      </div>
+
+      <button onclick="addExpert()" style="margin-top: 15px; width: 100%;">Save Expert Profile</button>
     </div>
+
     <div class="card">
-      <h2>👤 Expert Directory</h2>
-      <div id="e-list">Loading...</div>
+      <h2>📚 Expert Directory</h2>
+      <div id="e-list" class="knowledge-grid">
+        Loading Experts...
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEAS TAB -->
+<div id="tab-ideas" class="page">
+  <div class="grid2">
+    <div class="card">
+      <h2>💡 Submit New Idea</h2>
+      <div id="i-status" class="status-box"></div>
+      <input type="text" id="idea-title" placeholder="Idea Title" />
+      <textarea id="idea-description" rows="4" placeholder="Detailed Description"></textarea>
+      <input type="text" id="idea-dept" placeholder="Department" />
+      <input type="text" id="idea-user" placeholder="Your Name" />
+      <button onclick="addIdea()">Submit Idea</button>
+    </div>
+
+    <div class="card">
+      <h2>💡 Innovation Hub</h2>
+      <div id="idea-list">Loading ideas...</div>
     </div>
   </div>
 </div>
@@ -346,20 +613,452 @@
   </div>
 </div>
 
+<div id="universal-detail-modal" class="modal">
+  <div class="modal-content" style="max-width: 700px; border-top: 6px solid #6B8E23;">
+    <div id="modal-badge-container"></div>
+    <h2 id="modal-detail-title" style="margin-top:10px; color:#2c3e50;"></h2>
+    <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+    <div id="modal-detail-body" style="line-height: 1.8; color: #444; max-height: 400px; overflow-y: auto; padding-right: 10px;">
+      </div>
+    <div class="modal-btns" style="margin-top: 25px;">
+      <button onclick="closeUniversalModal()" style="background:#6c757d; width:100%;">Close</button>
+    </div>
+  </div>
+</div>
+
 <script>
+  const translations = {
+  en: {
+    auth_welcome: "Welcome Back",
+    login_email: "Email Address",
+    login_pass: "Password",
+    login_btn: "Login",
+    new_here: "New to the portal?",
+    signup_link: "Sign Up",
+    auth_join: "Join the Portal",
+    reg_name: "Full Name",
+    reg_btn: "Create Account",
+    already_have: "Already have an account?",
+    login_link: "Login",
+    role_label: "Your Role:",
+    role_emp: "Employee",
+    role_mgr: "Manager",
+    role_adm: "Admin",
+    main_title: "AI Based Knowledge Management System",
+    main_subtitle: "Empowering Branch Employees with Intelligent Knowledge Management",
+    logout_btn: "Logout",
+    nav_ask: "Ask AI",
+    nav_knowledge: "Knowledge",
+    nav_lessons: "Lessons",
+    nav_experts: "Experts",
+    nav_ideas: "Ideas",
+    add_knowledge: "➕ Add Knowledge",
+    k_title_ph: "Title (e.g. Foreign Currency Account)",
+    k_content_ph: "Describe the procedure, policy, or banking service...",
+    k_email_ph: "Your Email",
+    save_btn: "Save Knowledge",
+    entries_title: "📚 Knowledge Entries",
+    loading: "Loading..."
+  },
+  am: {
+    auth_welcome: "እንኳን ደህና መጡ",
+    login_email: "የኢሜይል አድራሻ",
+    login_pass: "የይለፍ ቃል",
+    login_btn: "ይግቡ",
+    new_here: "አዲስ ተጠቃሚ ነዎት?",
+    signup_link: "ይመዝገቡ",
+    auth_join: "መለያ ይፍጠሩ",
+    reg_name: "ሙሉ ስም",
+    reg_btn: "መለያ ፍጠር",
+    already_have: "ቀደም ሲል መለያ አለዎት?",
+    login_link: "ይግቡ",
+    role_label: "የእርስዎ የስራ ድርሻ:",
+    role_emp: "ሰራተኛ",
+    role_mgr: "ማናጀር",
+    role_adm: "አድሚን",
+    main_title: "በAI የታገዘ የዕውቀት ማኔጅመንት ሲስተም",
+    main_subtitle: "የቅርንጫፍ ሰራተኞችን በዘመናዊ የዕውቀት አስተዳደር ማብቃት",
+    logout_btn: "ውጣ",
+    main_title: "የሲንቄ ባንክ ዕውቀት ፖርታል",
+    logout_text: "ውጣ",
+    nav_ask: "AI ይጠይቁ",
+    nav_knowledge: "ዕውቀት",
+    nav_lessons: "የተቀሰሙ ትምህርቶች",
+    nav_experts: "ባለሙያዎች",
+    nav_ideas: "ሀሳቦች",
+    add_knowledge: "➕ ዕውቀት ይጨምሩ",
+    k_title_ph: "ርዕስ (ለምሳሌ፡ የውጭ ምንዛሪ ሂሳብ)",
+    k_content_ph: "ሂደቱን፣ ፖሊሲውን ወይም የባንክ አገልግሎቱን ያብራሩ...",
+    k_email_ph: "የእርስዎ ኢሜይል",
+    save_btn: "ዕውቀትን አስቀምጥ",
+    entries_title: "📚 የዕውቀት መዝገቦች",
+    loading: "በመጫን ላይ..."
+  }
+};
+
+let currentLang = 'en'; 
+
+  let currentUser = null;
+  let currentRole = null;
+ 
+// 1. Toggle between Login and Signup views
+function toggleAuth(isSignup) {
+    document.getElementById('login-form').style.display = isSignup ? 'none' : 'block';
+    document.getElementById('signup-form').style.display = isSignup ? 'block' : 'none';
+    document.getElementById('auth-title').innerText = isSignup ? 'Create Account' : 'Welcome Back';
+}
+
+function toggleLanguage() {
+  currentLang = (currentLang === 'en') ? 'am' : 'en';
+  updateLabels();
+}
+
+function updateLabels() {
+  const langData = translations[currentLang];
+
+  // 1. Update text content for elements with data-key (Tabs, etc.)
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    if (langData[key]) el.textContent = langData[key];
+  });
+
+  // 2. AUTH OVERLAY (Login/Signup Screen)
+  const authTitle = document.getElementById('auth-title');
+  if (authTitle) {
+    // Dynamically check if we are on Login or Signup to set the correct title
+    const isSignup = document.getElementById('signup-form').style.display === 'block';
+    authTitle.textContent = isSignup ? langData.auth_join : langData.auth_welcome;
+  }
+
+  // Login Placeholders & Button
+  if (document.getElementById('login-email')) {
+    document.getElementById('login-email').placeholder = langData.login_email;
+    document.getElementById('login-password').placeholder = langData.login_pass;
+    document.querySelector('#login-form button').textContent = langData.login_btn;
+    // Update "New to the portal? Sign Up" text
+    document.querySelector('#login-form p').childNodes[0].textContent = langData.new_here + " ";
+    document.querySelector('#login-form a').textContent = langData.signup_link;
+  }
+
+  // Signup Placeholders, Role Select, & Button
+  if (document.getElementById('reg-name')) {
+    document.getElementById('reg-name').placeholder = langData.reg_name;
+    document.getElementById('reg-email').placeholder = langData.login_email;
+    document.getElementById('reg-password').placeholder = langData.login_pass;
+    document.querySelector('#signup-form button').textContent = langData.reg_btn;
+    
+    // Update "Already have account? Login" text
+    document.querySelector('#signup-form p').childNodes[0].textContent = langData.already_have + " ";
+    document.querySelector('#signup-form a').textContent = langData.login_link;
+
+    // Update Role Dropdown
+    const roleLabel = document.querySelector('#signup-form label');
+    if (roleLabel) roleLabel.textContent = langData.role_label;
+    const roleSelect = document.getElementById('reg-role');
+    if (roleSelect) {
+      roleSelect.options[0].text = langData.role_emp;
+      roleSelect.options[1].text = langData.role_mgr;
+      roleSelect.options[2].text = langData.role_adm;
+    }
+  }
+
+  // 3. HEADER (Main App Title & Logout)
+  const mainTitle = document.getElementById('main-app-title');
+  if (mainTitle) mainTitle.textContent = langData.main_title;
+  
+  const mainSubtitle = document.querySelector('.header-text p');
+  if (mainSubtitle) mainSubtitle.textContent = langData.main_subtitle;
+
+  const logoutBtn = document.getElementById('logout-btn');
+  if (logoutBtn) logoutBtn.textContent = langData.logout_btn;
+
+  // 4. KNOWLEDGE TAB (Placeholders & Headings)
+  const kTitle = document.getElementById('k-title');
+  if (kTitle) {
+    kTitle.placeholder = langData.k_title_ph;
+    document.getElementById('k-content').placeholder = langData.k_content_ph;
+    document.getElementById('k-email').placeholder = langData.k_email_ph;
+    
+    // Update Headings
+    const knowledgeHeadings = document.querySelectorAll('#tab-knowledge h2');
+    if (knowledgeHeadings.length > 0) {
+      knowledgeHeadings[0].textContent = langData.add_knowledge;
+      if (knowledgeHeadings[1]) knowledgeHeadings[1].textContent = langData.entries_title;
+    }
+    
+    const kSaveBtn = document.querySelector('#tab-knowledge button');
+    if (kSaveBtn) kSaveBtn.textContent = langData.save_btn;
+  }
+}
+
+// 2. Handle Login
+async function handleLogin() {
+    const email = document.getElementById("login-email").value.trim();
+    const password = document.getElementById("login-password").value.trim();
+
+    const res = await fetch("/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+    if (!res.ok) return alert(data.detail);
+
+    // Save user info and role
+    currentUser = data.user;
+    currentRole = data.user.role;
+    localStorage.setItem("user", JSON.stringify(currentUser));
+    localStorage.setItem("role", currentRole);
+
+    // MOVE IMMEDIATELY to main page
+    enterApp();
+}
+
+// 3. Handle Signup
+async function handleSignup() {
+    const name = document.getElementById("reg-name").value.trim();
+    const email = document.getElementById("reg-email").value.trim();
+    const password = document.getElementById("reg-password").value.trim();
+    const role = document.getElementById("reg-role").value;
+
+    if (!name || !email || !password) return alert("All fields are required");
+
+    const res = await fetch("/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password, role })
+    });
+
+    const data = await res.json();
+    if (!res.ok) return alert(data.detail);
+
+    alert("Account created! Please login.");
+    toggleAuth(false); // Switch to login view so they can enter
+}
+
+// 4. THE GATEKEEPER FUNCTION
+function enterApp() {
+    // Hide Auth, Show Main App
+    document.getElementById("auth-overlay").style.display = "none";
+    document.getElementById("app-content").style.display = "block";
+    
+    // Update the UI based on the role we just loaded
+    document.getElementById("role-display").innerText = "Logged in as: " + currentRole.toUpperCase();
+    applyRolePermissions(); 
+}
+
+// Modify your existing window.onload
+window.onload = () => {
+    const savedUser = localStorage.getItem("user");
+    const savedRole = localStorage.getItem("role");
+
+    const appContent = document.getElementById("app-content");
+    const authOverlay = document.getElementById("auth-overlay");
+    const authModal = document.getElementById("auth-modal");
+
+    if (savedUser && savedRole) {
+        // 1. Restore the session data
+        currentUser = JSON.parse(savedUser);
+        currentRole = savedRole;
+
+        // 2. Hide the login screens
+        if (authOverlay) authOverlay.style.display = "none";
+        if (authModal) authModal.classList.remove("show");
+
+        // 3. Show the app content
+        if (appContent) appContent.style.display = "block";
+
+        // 4. Run your initialization functions
+        // Calling all three to ensure all your features work
+        applyRoleUI();    
+        afterLoginInit(); 
+        enterApp();       
+
+    } else {
+        // No session found: Force the login view
+        if (appContent) appContent.style.display = "none";
+        if (authOverlay) authOverlay.style.display = "flex";
+        
+        // Ensure the login modal is visible (based on your second block)
+        showAuthOnly(); 
+    }
+};
+
+
+function logout() {
+    localStorage.removeItem("user");
+    localStorage.removeItem("role");
+    window.location.reload(); // Refresh to trigger the login screen
+}
+
+function closeAuth() {
+  document.getElementById("auth-modal").classList.remove("show");
+}
+
+function setRole() {
+  currentRole = document.getElementById("user-role").value;
+  document.getElementById("role-display").textContent = "Logged in as: " + currentRole.toUpperCase();
+  applyRolePermissions();
+}
+
+function applyRolePermissions() {
+  const addSection = document.querySelector("#tab-knowledge .card");
+  
+  if (currentRole === "employee") {
+    addSection.style.display = "none";
+  } else {
+    addSection.style.display = "block";
+  }
+
+  loadKnowledge(); // refresh buttons visibility
+}
+
+function closeUniversalModal() {
+  document.getElementById('universal-detail-modal').classList.remove('show');
+}
+
+async function showDetailedPopup(type, index) {
+  const res = await fetch(`/${type}`);
+  const data = await res.json();
+  const item = data[index];
+  
+  const titleEl = document.getElementById('modal-detail-title');
+  const bodyEl = document.getElementById('modal-detail-body');
+  const badgeEl = document.getElementById('modal-badge-container');
+  
+  bodyEl.innerHTML = "";
+  titleEl.innerText = item.title || item.name;
+
+  if (type === 'knowledge') {
+    badgeEl.innerHTML = `<span class="badge">📚 Knowledge</span>`;
+    bodyEl.innerHTML = `
+      <p><strong>Contributor:</strong> ${item.email}</p>
+      <div style="background:#f9f9f9; padding:15px; border-radius:8px; margin-top:10px; white-space: pre-wrap;">${item.content}</div>
+      ${item.file ? `<p style="margin-top:15px;">📎 <strong>Attachment:</strong> <a href="/uploads/${item.file}" target="_blank">Download File</a></p>` : ''}
+    `;
+  } 
+  else if (type === 'lessons') {
+    badgeEl.innerHTML = `<span class="badge" style="background:#fff3e0; color:#e65100;">📝 Lesson Learned</span>`;
+    bodyEl.innerHTML = `
+      <p><strong>Author:</strong> ${item.author} | <strong>Date:</strong> ${item.date}</p>
+      <p><strong>Problem:</strong> ${item.problemFaced}</p>
+      <div style="background:#fffde7; padding:15px; border-left:4px solid #fbc02d; margin:10px 0;"><strong>Lesson:</strong> ${item.lesson}</div>
+      <p><strong>Solution:</strong> ${item.solution}</p>
+      <p><strong>Key Takeaways:</strong> ${item.keyTakeaways}</p>
+    `;
+  }
+  else if (type === 'experts') {
+    badgeEl.innerHTML = `<span class="badge" style="background:#e3f2fd; color:#0d47a1;">👤 Expert</span>`;
+    bodyEl.innerHTML = `
+      <p><strong>Role:</strong> ${item.role}</p>
+      <p><strong>Expertise:</strong> ${item.expertise}</p>
+      <p><strong>Branch:</strong> ${item.branch}</p>
+      <div style="margin-top:20px; padding:15px; background:#e8f5e9; border-radius:8px; text-align:center;">
+        <strong>Email:</strong> <a href="mailto:${item.contact}">${item.contact}</a>
+      </div>
+    `;
+  }
+  document.getElementById('universal-detail-modal').classList.add('show');
+}
+
+
+
   let deleteTarget = null;
   let editTarget = null;
 
-  function switchTab(name) {
-    document.querySelectorAll('.tab').forEach((t, i) => t.classList.remove('active'));
+ // Function to strictly control what is visible
+function applyRoleUI() {
+  const role = currentRole;
+  const appContent = document.getElementById("app-content");
+  const authOverlay = document.getElementById("auth-overlay");
+const ideasPage = document.getElementById("tab-ideas");
+  if (ideasPage) {
+    const ideaFormCard = ideasPage.querySelector(".grid2 > .card:first-child");
+    const ideaGrid = ideasPage.querySelector(".grid2");
+    
+    // Everyone sees the form
+    ideaFormCard.style.display = "block";
+    ideaGrid.style.gridTemplateColumns = "1fr 1fr";
+  }
+
+  loadIdeas();
+  if (appContent) appContent.style.display = "block";
+  if (authOverlay) authOverlay.style.display = "none";
+
+  // Hide or Show the "Input/Add" cards for all tabs
+  // Assuming your input form is the first card in the grid2 container
+  document.querySelectorAll(".grid2").forEach(grid => {
+    const inputCard = grid.querySelector(".card:first-child");
+    if (role === "employee") {
+      if (inputCard) inputCard.style.display = "none";
+      grid.style.gridTemplateColumns = "1fr"; // Make the list full width
+    } else {
+      if (inputCard) inputCard.style.display = "block";
+      grid.style.gridTemplateColumns = "1fr 1fr"; // Keep side-by-side
+    }
+  });
+
+  // Re-load the lists so the Edit/Delete buttons can be hidden based on the role
+  loadKnowledge(); 
+  loadLessons();
+  loadExperts();
+  loadIdeas();
+}
+
+// Update the Login function to trigger the UI shift
+async function login() {
+  const email = document.getElementById("auth-email").value.trim();
+  const password = document.getElementById("auth-password").value.trim();
+
+  if (!email || !password) return alert("Enter credentials");
+
+  const res = await fetch("/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await res.json();
+  if (!res.ok) return alert(data.detail);
+
+  currentUser = data.user;
+  currentRole = data.user.role;
+
+  localStorage.setItem("user", JSON.stringify(currentUser));
+  localStorage.setItem("role", currentRole);
+
+  applyRoleUI(); // This now handles hiding the overlay and showing the app
+}
+
+// Ensure it checks on page refresh
+
+function switchTab(name) {
+    // 1. Remove active class from all tabs and pages
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const tabs = ['ask', 'knowledge', 'lessons', 'experts', 'search'];
-    document.querySelectorAll('.tab')[tabs.indexOf(name)].classList.add('active');
-    document.getElementById('tab-' + name).classList.add('active');
+
+    // 2. Define all your tab names in order
+    const tabs = ['ask', 'knowledge', 'lessons', 'experts', 'ideas', 'search'];
+    
+    // 3. Find the current tab index
+    const index = tabs.indexOf(name);
+
+    // 4. Highlight the correct tab and show the page
+    if (index !== -1) {
+        const tabElement = document.querySelectorAll('.tab')[index];
+        const pageElement = document.getElementById('tab-' + name);
+        
+        if (tabElement) tabElement.classList.add('active');
+        if (pageElement) pageElement.classList.add('active');
+    }
+
+    // 5. Trigger the data loading
     if (name === 'knowledge') loadKnowledge();
     if (name === 'lessons') loadLessons();
     if (name === 'experts') loadExperts();
-  }
+    if (name === 'ideas') loadIdeas(); // This will now fire correctly!
+}
 
   async function performSearch() {
     const query = document.getElementById('search-input').value.trim().toLowerCase();
@@ -370,10 +1069,11 @@
       return;
     }
 
-    const [knowledge, lessons, experts] = await Promise.all([
+    const [knowledge, lessons, experts, ideas] = await Promise.all([
       fetch('/knowledge').then(r => r.json()),
       fetch('/lessons').then(r => r.json()),
-      fetch('/experts').then(r => r.json())
+      fetch('/experts').then(r => r.json()),
+      fetch('/ideas').then(r => r.json())
     ]);
 
     let results = [];
@@ -393,6 +1093,12 @@
     experts.forEach((e, idx) => {
       if (e.name.toLowerCase().includes(query) || e.role.toLowerCase().includes(query) || e.expertise.toLowerCase().includes(query) || e.branch.toLowerCase().includes(query)) {
         results.push({ type: '👤 Expert', title: e.name, content: `${e.role} · ${e.branch}`, meta: `${e.expertise} · ${e.contact}`, match: 'experts', data: e, index: idx });
+      }
+    });
+
+    ideas.forEach((i, idx) => {
+      if (i.title.toLowerCase().includes(query) || i.description.toLowerCase().includes(query) || i.createdBy.toLowerCase().includes(query)) {
+        results.push({ type: '💡 Idea', title: i.title, content: i.description.substring(0, 150) + '...', meta: `By ${i.createdBy} · ${i.status}`, match: 'ideas', data: i, index: idx });
       }
     });
 
@@ -430,8 +1136,17 @@
       contentEl.innerHTML = `
         <p><strong>Role:</strong> ${result.data.role}</p>
         <p><strong>Branch:</strong> ${result.data.branch}</p>
+        <p><strong>Department:</strong> ${result.data.department}</p>
         <p><strong>Expertise:</strong> ${result.data.expertise}</p>
         <p><strong>Contact:</strong> ${result.data.contact}</p>
+      `;
+    } else if (result.match === 'ideas') {
+      contentEl.innerHTML = `
+        <p><strong>Description:</strong> ${result.data.description}</p>
+        <p><strong>Department:</strong> ${result.data.department}</p>
+        <p><strong>Status:</strong> ${result.data.status}</p>
+        <p><strong>Comments:</strong> ${result.data.comments}</p>
+        <p><strong>Created By:</strong> ${result.data.createdBy}</p>
       `;
     }
 
@@ -461,87 +1176,212 @@
   }
 
   async function addKnowledge() {
-    const title = document.getElementById("k-title").value.trim();
-    const content = document.getElementById("k-content").value.trim();
-    if (!title || !content) return alert("Fill both fields.");
-    const res = await fetch("/knowledge", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title, content }) });
-    const data = await res.json();
-    showStatus("k-status", data.message);
-    document.getElementById("k-title").value = "";
-    document.getElementById("k-content").value = "";
-    loadKnowledge();
+  const title = document.getElementById("k-title").value.trim();
+  const content = document.getElementById("k-content").value.trim();
+  const email = document.getElementById("k-email").value.trim();
+  const fileInput = document.getElementById("k-file");
+  const file = fileInput.files[0];
+
+  if (!title || !content || !email) return alert("Fill all fields.");
+
+  let res;
+
+  if (file) {
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("email", email);
+    formData.append("file", file);
+
+    res = await fetch("/knowledge/upload", {
+      method: "POST",
+      headers: {
+        "role": currentRole   // ✅ role added here
+      },
+      body: formData
+    });
+
+  } else {
+
+    res = await fetch("/knowledge", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "role": currentRole   // ✅ role added here
+      },
+      body: JSON.stringify({ title, content, email })
+    });
+
   }
 
+  const data = await res.json();
+  showStatus("k-status", data.message || data.detail);
+
+  document.getElementById("k-title").value = "";
+  document.getElementById("k-content").value = "";
+  document.getElementById("k-email").value = "";
+  fileInput.value = "";
+
+  loadKnowledge();
+}
   async function addLesson() {
     const title = document.getElementById("l-title").value.trim();
     const lesson = document.getElementById("l-lesson").value.trim();
     const author = document.getElementById("l-author").value.trim();
-    if (!title || !lesson || !author) return alert("Fill all fields.");
-    const res = await fetch("/lessons", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title, lesson, author }) });
+    const department = document.getElementById("l-department").value.trim();
+    const projectOrTask = document.getElementById("l-projectOrTask").value.trim();
+    const problemFaced = document.getElementById("l-problemFaced").value.trim();
+    const solution = document.getElementById("l-solution").value.trim();
+    const keyTakeaways = document.getElementById("l-keyTakeaways").value.trim();
+    
+    if (!title || !lesson || !author || !department || !projectOrTask || !problemFaced || !solution || !keyTakeaways) return alert("Fill all required fields.");
+    const body = { title, lesson, author, department, projectOrTask, problemFaced, solution, keyTakeaways };
+    if (relatedKnowledgeId) body.relatedKnowledgeId = relatedKnowledgeId;
+    const res = await fetch("/lessons", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
     const data = await res.json();
     showStatus("l-status", data.message);
-    document.getElementById("l-title").value = "";
-    document.getElementById("l-lesson").value = "";
-    document.getElementById("l-author").value = "";
+    ["l-title","l-lesson","l-author","l-department","l-projectOrTask","l-problemFaced","l-solution","l-keyTakeaways"].forEach(id => document.getElementById(id).value = "");
     loadLessons();
   }
 
-  async function addExpert() {
-    const name = document.getElementById("e-name").value.trim();
-    const role = document.getElementById("e-role").value.trim();
-    const expertise = document.getElementById("e-expertise").value.trim();
-    const branch = document.getElementById("e-branch").value.trim();
-    const contact = document.getElementById("e-contact").value.trim();
-    if (!name || !role || !expertise || !branch || !contact) return alert("Fill all fields.");
-    const res = await fetch("/experts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, role, expertise, branch, contact }) });
-    const data = await res.json();
-    showStatus("e-status", data.message);
-    ["e-name","e-role","e-expertise","e-branch","e-contact"].forEach(id => document.getElementById(id).value = "");
-    loadExperts();
-  }
+async function addIdea() {
+  const title = document.getElementById("idea-title").value.trim();
+  const description = document.getElementById("idea-description").value.trim();
+  const department = document.getElementById("idea-dept").value.trim();
+  const user = document.getElementById("idea-user").value.trim();
 
-  async function loadKnowledge() {
-    const data = await (await fetch("/knowledge")).json();
-    document.getElementById("k-list").innerHTML = data.map((k, i) => `
-      <div class="item">
-        <strong>${k.title}</strong>
+  if (!title || !description) return alert("Please fill required fields");
+
+  const res = await fetch("/ideas", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "role": currentRole },
+    body: JSON.stringify({
+      title, 
+      description, 
+      department, 
+      user,
+      status: "pending", // All new ideas start as 'pending'
+      comment: ""        // Comments start empty
+    })
+  });
+  
+  if (res.ok) {
+     ["idea-title", "idea-description", "idea-dept", "idea-user"].forEach(id => document.getElementById(id).value = "");
+     loadIdeas();
+     showStatus("i-status", "Idea submitted for review!");
+  }
+}
+
+
+async function loadKnowledge() {
+  const data = await (await fetch("/knowledge")).json();
+  const list = document.getElementById("k-list");
+
+  // We map through the data to create the HTML string
+  list.innerHTML = data.map((k, i) => `
+    <div class="item" style="cursor: pointer;" onclick="showDetailedPopup('knowledge', ${i})">
+      <strong>${k.title}</strong>
+
+      <div class="meta">
+        👤 ${k.email ? k.email : "No email"} 
+        ${k.file ? " | 📎 File: " + k.file : ""}
+      </div>
+
+      <div>
         ${k.content.substring(0, 140)}...
-        <div>
-          <button class="edit-btn" onclick="editItem('knowledge', ${i})">✏️ Edit</button>
-          <button class="del-btn" onclick="deleteItem('knowledge', ${i})">🗑️ Delete</button>
-        </div>
-      </div>`).join("") || "No entries yet.";
-  }
+      </div>
 
-  async function loadLessons() {
-    const data = await (await fetch("/lessons")).json();
-    document.getElementById("l-list").innerHTML = data.map((l, i) => `
-      <div class="item">
-        <strong>${l.title}</strong>
-        <div class="meta">By ${l.author} · ${l.date}</div>
-        ${l.lesson.substring(0, 140)}...
-        <div>
-          <button class="edit-btn" onclick="editItem('lessons', ${i})">✏️ Edit</button>
-          <button class="del-btn" onclick="deleteItem('lessons', ${i})">🗑️ Delete</button>
+      ${k.file ? `
+        <div style="margin-top:8px;">
+          📎 <a href="/uploads/${k.file}" target="_blank" onclick="event.stopPropagation()">
+            View File
+          </a>
         </div>
-      </div>`).join("") || "No lessons yet.";
-  }
+      ` : ""}
 
-  async function loadExperts() {
-    const data = await (await fetch("/experts")).json();
-    document.getElementById("e-list").innerHTML = data.map((e, i) => `
-      <div class="item">
-        <strong>${e.name}</strong>
-        <div class="meta">${e.role} · ${e.branch}</div>
-        <span class="badge">${e.expertise}</span><br/>
-        <small>📧 ${e.contact}</small>
-        <div>
-          <button class="edit-btn" onclick="editItem('experts', ${i})">✏️ Edit</button>
-          <button class="del-btn" onclick="deleteItem('experts', ${i})">🗑️ Delete</button>
+      ${currentRole !== 'employee' ? `
+        <div style="margin-top: 10px;">
+          <button class="edit-btn" onclick="event.stopPropagation(); editItem('knowledge', ${i})">✏️ Edit</button>
+          <button class="del-btn" onclick="event.stopPropagation(); deleteItem('knowledge', ${i})">🗑️ Delete</button>
         </div>
-      </div>`).join("") || "No experts yet.";
-  }
+      ` : ''}
+    </div>
+  `).join("") || "No entries yet.";
 
+  // This handles your grid layout for employees
+  if (currentRole === "employee") {
+    list.classList.add("knowledge-grid");
+  } else {
+    list.classList.remove("knowledge-grid");
+  }
+}
+
+
+async function loadLessons() {
+  const data = await (await fetch("/lessons")).json();
+  document.getElementById("l-list").innerHTML = data.map((l, i) => `
+    <div class="item" style="cursor: pointer;" onclick="showDetailedPopup('lessons', ${i})">
+      <strong>${l.title}</strong>
+      <div class="meta">By ${l.author} · ${l.date}</div>
+      <div>${l.lesson.substring(0, 140)}...</div>
+      
+      <div style="margin-top: 10px;">
+        <button class="edit-btn" onclick="event.stopPropagation(); editItem('lessons', ${i})">✏️ Edit</button>
+        <button class="del-btn" onclick="event.stopPropagation(); deleteItem('lessons', ${i})">🗑️ Delete</button>
+      </div>
+    </div>`).join("") || "No lessons yet.";
+}
+
+ async function loadExperts() {
+  const data = await (await fetch("/experts")).json();
+  document.getElementById("e-list").innerHTML = data.map((e, i) => `
+    <div class="item" style="cursor:pointer;" onclick="showDetailedPopup('experts', ${i})">
+      <strong>${e.name}</strong>
+      <div class="meta">${e.role} · ${e.branch}</div>
+      <span class="badge">${e.expertise}</span>
+      ${currentRole !== 'employee' ? `
+        <div style="margin-top:10px;">
+          <button class="edit-btn" onclick="event.stopPropagation(); editItem('experts', ${i})">✏️ Edit</button>
+          <button class="del-btn" onclick="event.stopPropagation(); deleteItem('experts', ${i})">🗑️ Delete</button>
+        </div>
+      ` : ''}
+    </div>`).join("") || "No experts yet.";
+}
+
+async function loadIdeas() {
+  const data = await (await fetch("/ideas")).json();
+  const list = document.getElementById("idea-list");
+
+  list.innerHTML = data.map((idea, i) => `
+    <div class="item" style="cursor: pointer;" onclick="showDetailedPopup('ideas', ${i})">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <strong>${idea.title}</strong>
+        <span class="badge" style="background: ${getStatusColor(idea.status)}">${idea.status.toUpperCase()}</span>
+      </div>
+      
+      <div class="meta">By ${idea.user} · Dept: ${idea.department}</div>
+      <div style="margin: 8px 0;">${idea.description.substring(0, 100)}...</div>
+      
+      <div style="font-style: italic; font-size: 0.85rem; color: #666;">
+        💬 Latest Comment: ${idea.comment || "No comments yet"}
+      </div>
+
+      <div style="margin-top: 12px; display: flex; gap: 8px;">
+        ${currentRole !== 'employee' ? `
+          <button class="edit-btn" onclick="event.stopPropagation(); editItem('ideas', ${i})">✏️ Manage/Update</button>
+          <button class="del-btn" onclick="event.stopPropagation(); deleteItem('ideas', ${i})">🗑️ Delete</button>
+        ` : ''}
+      </div>
+    </div>
+  `).join("") || "No ideas submitted yet.";
+}
+
+// Helper for status colors
+function getStatusColor(status) {
+  if (status === 'approved') return '#d4edda; color: #155724;';
+  if (status === 'pending') return '#fff3cd; color: #856404;';
+  return '#f8d7da; color: #721c24;'; // draft
+}
   async function deleteItem(type, index) {
     deleteTarget = { type, index };
     document.getElementById('delete-modal').classList.add('show');
@@ -554,10 +1394,16 @@
 
   async function confirmDelete() {
     if (!deleteTarget) return;
-    await fetch(`/${deleteTarget.type}/${deleteTarget.index}`, { method: "DELETE" });
+    await fetch(`/${deleteTarget.type}/${deleteTarget.index}`, {
+      method: "DELETE",
+      headers: {
+      "role": currentRole
+     }
+    });
     if (deleteTarget.type === 'knowledge') loadKnowledge();
     if (deleteTarget.type === 'lessons') loadLessons();
     if (deleteTarget.type === 'experts') loadExperts();
+    if (deleteTarget.type === 'ideas') loadIdeas();
     closeModal();
   }
 
@@ -586,9 +1432,77 @@
         <input type="text" id="edit-expertise" value="${item.expertise}" placeholder="Expertise" />
         <input type="text" id="edit-branch" value="${item.branch}" placeholder="Branch" />
         <input type="text" id="edit-contact" value="${item.contact}" placeholder="Contact" />
+        <input type="text" id="edit-department" value="${item.department}" placeholder="Department" />
+        <input type="text" id="edit-knowledgeRelated" value="${item.knowledgeRelated.join(', ')}" placeholder="Knowledge Related IDs" />
       `;
-    }
+    } else if (type === 'ideas')
+     {
+  // Determine if we show the status controls or just text
+  const managementControls = (currentRole !== 'employee') ? `
+    <label>Review Status</label>
+    <select id="edit-status" class="modal-input">
+      <option value="pending" ${item.status === 'pending' ? 'selected' : ''}>Pending</option>
+      <option value="approved" ${item.status === 'approved' ? 'selected' : ''}>Approved</option>
+      <option value="draft" ${item.status === 'draft' ? 'selected' : ''}>Declined/Draft</option>
+    </select>
+    
+    <label>Manager's Feedback/Comment</label>
+    <textarea id="edit-comment" rows="3" class="modal-input">${item.comment || ''}</textarea>
+  ` : `
+    <p><strong>Current Status:</strong> <span class="badge">${item.status.toUpperCase()}</span></p>
+    <p><strong>Manager Feedback:</strong> ${item.comment || 'No feedback yet.'}</p>
+    <input type="hidden" id="edit-status" value="${item.status}">
+    <input type="hidden" id="edit-comment" value="${item.comment || ''}">
+  `;
 
+  formHTML = `
+    <label>Idea Title</label>
+    <input type="text" id="edit-title" value="${item.title}" class="modal-input" />
+    <label>Description</label>
+    <textarea id="edit-description" rows="4" class="modal-input">${item.description}</textarea>
+    <hr style="margin: 15px 0;">
+    ${managementControls}
+  `;
+    }
+async function showDetailedPopup(type, index) {
+  // Use existing search detail modal or the universal one we discussed
+  const res = await fetch(`/${type}`);
+  const data = await res.json();
+  const item = data[index];
+  
+  const modal = document.getElementById('search-detail-modal'); // Reusing your existing search modal
+  const titleEl = document.getElementById('detail-title');
+  const contentEl = document.getElementById('detail-content');
+
+  titleEl.innerHTML = `<strong>${item.title || item.name}</strong>`;
+
+  if (type === 'knowledge') {
+    contentEl.innerHTML = `
+      <p style="color:#666; font-size:0.9rem;">Contributor: ${item.email}</p>
+      <hr>
+      <p style="white-space: pre-wrap; margin-top:10px;">${item.content}</p>
+      ${item.file ? `<div style="margin-top:15px;">📎 <a href="/uploads/${item.file}" target="_blank">View Attached Document</a></div>` : ''}
+    `;
+  } else if (type === 'lessons') {
+    contentEl.innerHTML = `
+      <div class="meta">Author: ${item.author} | Date: ${item.date}</div>
+      <div style="background:#fffde7; padding:15px; border-left:4px solid #fbc02d; margin:10px 0;">
+        <strong>The Lesson:</strong><br>${item.lesson}
+      </div>
+      <p><strong>Problem:</strong> ${item.problemFaced}</p>
+      <p><strong>Solution:</strong> ${item.solution}</p>
+    `;
+  } else if (type === 'experts') {
+    contentEl.innerHTML = `
+      <p><strong>Role:</strong> ${item.role}</p>
+      <p><strong>Expertise:</strong> ${item.expertise}</p>
+      <p><strong>Branch:</strong> ${item.branch}</p>
+      <p><strong>Contact:</strong> <a href="mailto:${item.contact}">${item.contact}</a></p>
+    `;
+  }
+
+  modal.classList.add('show');
+}
     document.getElementById('edit-form').innerHTML = formHTML;
     document.getElementById('edit-modal').classList.add('show');
   }
@@ -620,19 +1534,61 @@
         role: document.getElementById('edit-role').value,
         expertise: document.getElementById('edit-expertise').value,
         branch: document.getElementById('edit-branch').value,
-        contact: document.getElementById('edit-contact').value
+        contact: document.getElementById('edit-contact').value,
+        department: document.getElementById('edit-department').value,
+        knowledgeRelated: document.getElementById('edit-knowledgeRelated').value.split(',').map(id => parseInt(id.trim())).filter(id => !isNaN(id))
       };
-    }
+    } else if (type === 'ideas') {
+  const managementControls = (currentRole !== 'employee') ? `
+    <div class="form-group">
+      <label>Review Status</label>
+      <select id="edit-status" class="modal-input">
+        <option value="pending" ${item.status === 'pending' ? 'selected' : ''}>⏳ Pending</option>
+        <option value="approved" ${item.status === 'approved' ? 'selected' : ''}>✅ Approved</option>
+        <option value="draft" ${item.status === 'draft' ? 'selected' : ''}>❌ Declined / Draft</option>
+      </select>
+    </div>
+    
+    <div class="form-group" style="margin-top: 15px;">
+      <label>Manager's Feedback</label>
+      <textarea id="edit-comment" rows="3" class="modal-input" placeholder="Enter feedback...">${item.comment || ''}</textarea>
+    </div>
+  ` : `
+    <div class="status-display" style="padding: 10px; background: #f8f9fa; border-radius: 8px; margin-top: 10px;">
+      <p><strong>Current Status:</strong> <span class="badge">${item.status.toUpperCase()}</span></p>
+      <p style="margin-top: 5px;"><strong>Feedback:</strong> ${item.comment || 'No feedback provided yet.'}</p>
+    </div>
+    <input type="hidden" id="edit-status" value="${item.status}">
+    <input type="hidden" id="edit-comment" value="${item.comment || ''}">
+  `;
+
+  formHTML = `
+    <div class="form-group">
+      <label>Idea Title</label>
+      <input type="text" id="edit-title" value="${item.title}" class="modal-input" />
+    </div>
+    <div class="form-group" style="margin-top: 15px;">
+      <label>Description</label>
+      <textarea id="edit-description" rows="5" class="modal-input">${item.description}</textarea>
+    </div>
+    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+    ${managementControls}
+  `;
+}
 
     await fetch(`/${type}/${index}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
-    });
+         method: "PUT",
+         headers: {
+       "Content-Type": "application/json",
+       "role": currentRole
+         },
+         body: JSON.stringify(body)
+      });
 
     if (type === 'knowledge') loadKnowledge();
     if (type === 'lessons') loadLessons();
     if (type === 'experts') loadExperts();
+    if (type === 'ideas') loadIdeas();
     closeEditModal();
   }
 
@@ -646,6 +1602,27 @@
   document.getElementById("question").addEventListener("keydown", e => {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); askQuestion(); }
   });
+
+  function showAuthOnly() {
+  document.getElementById("auth-modal").classList.add("show");
+
+  // hide everything
+  document.querySelector(".tabs").style.display = "none";
+  document.querySelector("header").style.display = "none";
+
+  document.querySelectorAll(".page").forEach(p => {
+    p.style.display = "none";
+  });
+}
+function afterLoginInit() {
+  document.querySelector(".tabs").style.display = "flex";
+  document.querySelector("header").style.display = "flex";
+
+  // show default page
+  switchTab("ask");
+
+  applyRoleUI();
+}
 </script>
 
 </body>
