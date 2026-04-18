@@ -34,5 +34,11 @@
     "email": "a@g.com",
     "password": "2222",
     "role": "admin"
+  },
+  {
+    "name": "Haile Asaye",
+    "email": "haileasaye51@gmail.com",
+    "password": "password",
+    "role": "employee"
   }
 ]
